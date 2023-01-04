@@ -62,9 +62,9 @@
                     </td>
                     <td>{deployment.annotation}</td>
                     <td>{deployment.testing}</td>
-                    <td>{deployment.created}</td>
-                    <td>{deployment.construction_site_preparation_feedback}</td>
-                    <td>{deployment.internet_connection}</td>
+                    <td><f:format.date>{deployment.created}</f:format.date></td>
+                    <td><f:format.date>{deployment.construction_site_preparation_feedback}</f:format.date></td>
+                    <td><f:format.date>{deployment.internet_connection}</f:format.date></td>
                     <td>{deployment.technician_annotation}</td>
                 </tr>
             </f:for>
