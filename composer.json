@@ -6,6 +6,7 @@
     "license": ["GPL-3.0-or-later"],
     "keywords": ["TYPO3 CMS"],
     "require": {
+        "homeinfo/mdb": ">=1.0.0"
     },
     "autoload": {
         "psr-4": {
