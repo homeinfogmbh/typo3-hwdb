@@ -8,7 +8,7 @@ defined('TYPO3_MODE') || die();
     '',
     '',
     [
-        \Homeinfo\SysMon2\Controller\DebugController::class => 'index',
+        \Homeinfo\hwdb\Controller\DebugController::class => 'index',
     ],
     [
         'access' => 'user',
