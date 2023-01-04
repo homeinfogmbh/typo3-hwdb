@@ -1,6 +1,6 @@
 <?php
 
-namespace Homeinfo\mdb\Domain\Repository;
+namespace Homeinfo\hwdb\Domain\Repository;
 
 use Generator;
 
