@@ -12,7 +12,7 @@ defined('TYPO3_MODE') || die();
     ],
     [
         'access' => 'user',
-        'labels' => 'LLL:EXT:hwdb/Resources/Private/Language/locallang_be.xlf:backend.checkresults.label',
+        'labels' => 'LLL:EXT:hwdb/Resources/Private/Language/locallang_be.xlf:backend.deployments.label',
         'inheritNavigationComponentFromMainModule' => false,
         'standalone' => true,
     ]
