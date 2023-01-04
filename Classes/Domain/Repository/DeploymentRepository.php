@@ -34,8 +34,8 @@ class DeploymentRepository
     public function list(): Generator {
         foreach ($this->select()->executeQuery()->fetchAll() as &$record)
         {
-            $address = AddressRepository.get($record['address']);
-            $lpt_address = (($lpt_address = $record['lpt_address']) === null) ? null : AddressRepository.get($lpt_address);
+            $address = AddressRepository::get($record['address']);
+            $lpt_address = (($lpt_address = $record['lpt_address']) === null) ? null : AddressRepository::get($lpt_address);
             yield Deployment::fromArray($record, $address, $lpt_address);
         }
     }
