@@ -2,11 +2,70 @@
     <div style="border:1px solid #fff;">
         <table>
             <tr>
-                <th>ICMP Request</th>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Type</th>
+                <th>Connection</th>
+                <th>Address</th>
+                <th>LPT Address</th>
+                <th>Annotation</th>
+                <th>Testing</th>
+                <th>Created</th>
+                <th>Construction site preparation feedback</th>
+                <th>Internet connection installed</th>
+                <th>Technitian annotation</th>
             </tr>
-            <f:for each="{check_results}" as="check_result">
+            <f:for each="{deployments}" as="deployment">
                 <tr>
-                    <td>{check_result.icmp_request}</td>
+                    <td>{deployment.id}</td>
+                    <td>{deployment.customer}</td>
+                    <td>{deployment.type}</td>
+                    <td>{deployment.connection}</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>Street</th>
+                                <th>House number</th>
+                                <th>ZIP code</th>
+                                <th>City</th>
+                            </tr>
+                            <tr>
+                                <td>{deployment.address.street}</td>
+                                <td>{deployment.address.house_number}</td>
+                                <td>{deployment.address.zip_code}</td>
+                                <td>{deployment.address.city}</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <f:if condition="{deployment.lpt_address}">
+                            <f:then>
+                                <table>
+                                    <tr>
+                                        <th>Street</th>
+                                        <th>House number</th>
+                                        <th>ZIP code</th>
+                                        <th>City</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{deployment.address.street}</td>
+                                        <td>{deployment.address.house_number}</td>
+                                        <td>{deployment.address.zip_code}</td>
+                                        <td>{deployment.address.city}</td>
+                                    </tr>
+                                </table>
+                            </f:then>
+                            <f:else>
+                                -
+                            </f:else>
+                        </f:if>
+                    </td>
+                    <td>{deployment.annotation}</td>
+                    <td>{deployment.testing}</td>
+                    <td>{deployment.created}</td>
+                    <td>{deployment.construction_site_preparation_feedback}</td>
+                    <td>{deployment.internet_connection}</td>
+                    <td>{deployment.technician_annotation}</td>
                 </tr>
             </f:for>
         </table>
