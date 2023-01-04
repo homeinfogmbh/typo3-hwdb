@@ -8,7 +8,7 @@ use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 
-use Homeinfo\mdb\Domain\Model\AddressRepository;
+use Homeinfo\mdb\Domain\Repository\AddressRepository;
 
 use Homeinfo\hwdb\Domain\Model\Deployment;
 
