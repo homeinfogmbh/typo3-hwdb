@@ -28,11 +28,13 @@ final class Deployment
 
     public static function fromArray(array $array, Address $address, ?Address $lpt_address): Self
     {
-        
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump(
-            $array['construction_site_preparation_feedback'],
-            "construction_site_preparation_feedback: "
-        );
+        if ($array['id'] == 2069)
+        {
+            \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump(
+                $array['construction_site_preparation_feedback'],
+                "construction_site_preparation_feedback: "
+            );
+        }
         return new self(
             $array['id'],
             $array['customer'],
