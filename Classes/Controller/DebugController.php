@@ -1,6 +1,6 @@
 <?php
 
-namespace Homeinfo\SysMon2\Controller;
+namespace Homeinfo\hwdb\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -8,7 +8,7 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use Homeinfo\SysMon2\Domain\Repository\CheckResultsRepository;
+use Homeinfo\hwdb\Domain\Repository\CheckResultsRepository;
 
 class DebugController extends ActionController
 {

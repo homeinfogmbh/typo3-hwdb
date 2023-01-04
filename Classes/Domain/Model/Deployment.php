@@ -26,6 +26,28 @@ final class CheckResults
     {
     }
 
+    public static function fromJoinedRecord(array $record): Self {
+        return Self::fromArray(
+            $record,
+            Address::fromArray([
+                'id' => $record['address'],
+                'street' => $record['address_street'],
+                'house_number' => $record['address_house_number'],
+                'zip_code' => $record['address_zip_code'],
+                'city' => $record['address_city'],
+                'district' => $record['address_district'],
+            ]),
+            (($lpt_address_id = $record['lpt_address']) === null) ? null : Address::fromArray([
+                'id' => $lpt_address_id,
+                'street' => $record['lpt_address_street'],
+                'house_number' => $record['lpt_address_house_number'],
+                'zip_code' => $record['lpt_address_zip_code'],
+                'city' => $record['lpt_address_city'],
+                'district' => $record['lpt_address_district'],
+            ]),
+        );
+    }
+
     public static function fromArray(array $array, Address $address, ?Address $lpt_address): Self {
         return new self(
             $array['id'],
