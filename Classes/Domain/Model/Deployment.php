@@ -1,12 +1,12 @@
 <?php
 
-namespace Homeinfo\SysMon2\Domain\Model;
+namespace Homeinfo\hwdb\Domain\Model;
 
 use DateTime;
 
 use Homeinfo\mdb\Domain\Model\Address;
 
-final class CheckResults
+final class Deployment
 {
     function __construct(
         public readonly int $id,
