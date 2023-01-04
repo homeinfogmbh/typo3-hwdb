@@ -1,0 +1,7 @@
+module.tx_sysmon2 {
+    view {
+        templateRootPaths {
+            10 = EXT:SysMon2/Resources/Private/Templates/
+        }
+    }
+}

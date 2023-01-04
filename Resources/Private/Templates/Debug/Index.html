@@ -1,0 +1,14 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    <div style="border:1px solid #fff;">
+        <table>
+            <tr>
+                <th>ICMP Request</th>
+            </tr>
+            <f:for each="{check_results}" as="check_result">
+                <tr>
+                    <td>{check_result.icmp_request}</td>
+                </tr>
+            </f:for>
+        </table>
+    </div>
+</html>

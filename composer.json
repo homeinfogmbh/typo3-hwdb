@@ -1,0 +1,21 @@
+{
+    "name": "homeinfo/hwdb",
+    "type": "typo3-cms-extension",
+    "description": "",
+    "homepage": "https://www.homeinfo.de",
+    "license": ["GPL-3.0-or-later"],
+    "keywords": ["TYPO3 CMS"],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Homeinfo\\mdb\\": "Classes/",
+            "Homeinfo\\hwdb\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "hwdb"
+        }
+    }
+}

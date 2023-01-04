@@ -1,2 +1,2 @@
 # typo3-hwdb
-Hardware database access for Typo3
+Hardware database plugin for Typo3
