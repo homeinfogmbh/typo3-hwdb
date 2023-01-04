@@ -14,9 +14,12 @@ use Homeinfo\hwdb\Domain\Model\Deployment;
 
 class DeploymentRepository
 {
+    private AddressRepository $addressRepository;
+
     public function __construct(
         private readonly ConnectionPool $connectionPool
     ) {
+        $this->addressRepository = new AddressRepository($connectionPool);
     }
 
     public function findById(int $id): array {
@@ -34,9 +37,11 @@ class DeploymentRepository
     public function list(): Generator {
         foreach ($this->select()->executeQuery()->fetchAll() as &$record)
         {
-            $address = AddressRepository::get($record['address']);
-            $lpt_address = (($lpt_address = $record['lpt_address']) === null) ? null : AddressRepository::get($lpt_address);
-            yield Deployment::fromArray($record, $address, $lpt_address);
+            yield Deployment::fromArray(
+                $record,
+                $this->addressRepository->get($record['address']),
+                (($lpt_address = $record['lpt_address']) === null) ? null : $this->addressRepository->get($lpt_address)
+            );
         }
     }
 
