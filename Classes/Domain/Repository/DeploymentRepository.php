@@ -34,6 +34,18 @@ class DeploymentRepository
             ->fetch();
     }
 
+    public function findByCustomerId(int $customerId): array {
+        return ($queryBuilder = $this->select())
+            ->where(
+                $queryBuilder->expr()->eq(
+                    'customer',
+                    $queryBuilder->createNamedParameter($customerId, Connection::PARAM_INT)
+                )
+            )
+            ->executeQuery()
+            ->fetchAll();
+    }
+
     public function list(): Generator {
         $addressMap = $this->addressRepository->getMap();
 
