@@ -19,19 +19,19 @@
                 <th>Last sync</th>
                 <th>Updating</th>
             </tr>
-            <f:for each="{deployments}" as="deployment">
+            <f:for each="{systems}" as="system">
                 <tr>
-                    <td>{deployment.id}</td>
-                    <td>{deployment.group}</td>
-                    <td>{deployment.deployment}</td>
-                    <td>{deployment.dataset}</td>
-                    <td>{deployment.openvpn}</td>
-                    <td>{deployment.ipv6address}</td>
-                    <td>{deployment.pubkey}</td>
-                    <td><f:format.date format="Y-M-D H:m:s">{deployment.created}</f:format.date></td>
-                    <td><f:format.date format="Y-M-D H:m:s">{deployment.configured}</f:format.date></td>
+                    <td>{system.id}</td>
+                    <td>{system.group}</td>
+                    <td>{system.deployment}</td>
+                    <td>{system.dataset}</td>
+                    <td>{system.openvpn}</td>
+                    <td>{system.ipv6address}</td>
+                    <td>{system.pubkey}</td>
+                    <td><f:format.date format="Y-M-D H:m:s">{system.created}</f:format.date></td>
+                    <td><f:format.date format="Y-M-D H:m:s">{system.configured}</f:format.date></td>
                     <td>
-                        <f:if condition="{deployment.fitted}">
+                        <f:if condition="{system.fitted}">
                             <f:then>
                                 Ja
                             </f:then>
@@ -40,9 +40,9 @@
                             </f:else>
                         </f:if>
                     </td>
-                    <td>{deployment.operating_system}</td>
+                    <td>{system.operating_system}</td>
                     <td>
-                        <f:if condition="{deployment.monitor}">
+                        <f:if condition="{system.monitor}">
                             <f:then>
                                 Ja
                             </f:then>
@@ -51,11 +51,11 @@
                             </f:else>
                         </f:if>
                     </td>
-                    <td>{deployment.serial_number}</td>
-                    <td>{deployment.model}</td>
-                    <td><f:format.date format="Y-M-D H:m:s">{deployment.last_sync}</f:format.date></td>
+                    <td>{system.serial_number}</td>
+                    <td>{system.model}</td>
+                    <td><f:format.date format="Y-M-D H:m:s">{system.last_sync}</f:format.date></td>
                     <td>
-                        <f:if condition="{deployment.updating}">
+                        <f:if condition="{system.updating}">
                             <f:then>
                                 Ja
                             </f:then>
