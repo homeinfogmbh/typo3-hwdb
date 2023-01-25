@@ -4,7 +4,7 @@ defined('TYPO3_MODE') || die();
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
     'hwdb',
-    'hwdb',
+    'deployments',
     '',
     '',
     [
@@ -20,7 +20,7 @@ defined('TYPO3_MODE') || die();
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
     'hwdb',
-    'hwdb',
+    'systems',
     '',
     '',
     [
