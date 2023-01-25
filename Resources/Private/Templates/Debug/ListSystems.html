@@ -1,0 +1,89 @@
+
+        public readonly int $id,
+        public readonly ?int $group,
+        public readonly ?int $deployment,
+        public readonly ?int $dataset,
+        public readonly ?int $openvpn,
+        public readonly ?string $ipv6address,
+        public readonly ?string $pubkey,
+        public readonly DateTime $created,
+        public readonly ?DateTime $configured,
+        public readonly bool $fitted,
+        public readonly string $operating_system,
+        public readonly ?bool $monitor,
+        public readonly ?string $serial_number,
+        public readonly ?string $model,
+        public readonly ?DateTime $last_sync,
+        public readonly bool $updating,
+
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    <div style="border:1px solid #fff;">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Group</th>
+                <th>Deployment</th>
+                <th>Dataset</th>
+                <th>OpenVPN</th>
+                <th>IPv6 address</th>
+                <th>Pubkey</th>
+                <th>Created</th>
+                <th>Configured</th>
+                <th>Fitted</th>
+                <th>OS</th>
+                <th>Monitor</th>
+                <th>SN</th>
+                <th>Model</th>
+                <th>Last sync</th>
+                <th>Updating</th>
+            </tr>
+            <f:for each="{deployments}" as="deployment">
+                <tr>
+                    <td>{deployment.id}</td>
+                    <td>{deployment.group}</td>
+                    <td>{deployment.deployment}</td>
+                    <td>{deployment.dataset}</td>
+                    <td>{deployment.openvpn}</td>
+                    <td>{deployment.ipv6address}</td>
+                    <td>{deployment.pubkey}</td>
+                    <td><f:format.date format="Y-M-D H:m:s">{deployment.created}</f:format.date></td>
+                    <td><f:format.date format="Y-M-D H:m:s">{deployment.configured}</f:format.date></td>
+                    <td>
+                        <f:if condition="{deployment.fitted}">
+                            <f:then>
+                                Ja
+                            </f:then>
+                            <f:else>
+                                Nein
+                            </f:else>
+                        </f:if>
+                    </td>
+                    <td>{deployment.operating_system}</td>
+                    <td>
+                        <f:if condition="{deployment.monitor}">
+                            <f:then>
+                                Ja
+                            </f:then>
+                            <f:else>
+                                Nein
+                            </f:else>
+                        </f:if>
+                    </td>
+                    <td>{deployment.serial_number}</td>
+                    <td>{deployment.model}</td>
+                    <td><f:format.date format="Y-M-D H:m:s">{deployment.last_sync}</f:format.date></td>
+                    <td>
+                        <f:if condition="{deployment.updating}">
+                            <f:then>
+                                Ja
+                            </f:then>
+                            <f:else>
+                                Nein
+                            </f:else>
+                        </f:if>
+                    </td>
+                </tr>
+            </f:for>
+        </table>
+    </div>
+</html>

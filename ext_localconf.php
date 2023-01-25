@@ -5,6 +5,6 @@ defined('TYPO3_MODE') || die();
     'hwdb',
     'hwdb',
     [
-        \Homeinfo\hwdb\Controller\DebugController::class => 'index',
+        \Homeinfo\hwdb\Controller\DebugController::class => 'listDeployments,listSystems',
     ],
 );
