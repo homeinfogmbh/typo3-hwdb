@@ -29,7 +29,7 @@ class DebugController extends ActionController
         $repository = GeneralUtility::makeInstance(ObjectManager::class)
             ->get(SystemRepository::class);
         $systems = $repository->list();
-        //DebuggerUtility::var_dump($systems, "Systems: ");
+        DebuggerUtility::var_dump($systems, "Systems: ");
         $this->view->assign('systems', $systems);
     }
 }
