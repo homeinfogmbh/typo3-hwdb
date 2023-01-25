@@ -12,12 +12,9 @@ use Homeinfo\hwdb\Domain\Model\System;
 
 class SystemRepository
 {
-    private AddressRepository $addressRepository;
-
     public function __construct(
         private readonly ConnectionPool $connectionPool
     ) {
-        $this->addressRepository = new AddressRepository($connectionPool);
     }
 
     public function findById(int $id): array {
