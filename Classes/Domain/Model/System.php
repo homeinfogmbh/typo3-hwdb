@@ -35,7 +35,7 @@ final class System
             $array['deployment'],
             $array['dataset'],
             $array['openvpn'],
-            $array['ipv6address'],
+            inet_ntop($array['ipv6address']),
             $array['pubkey'],
             new DateTime($array['created']),
             (($configured = $array['configured']) === null) ? null : new DateTime($configured),
