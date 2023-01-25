@@ -81,8 +81,8 @@ class SystemRepository
 
     private function select(): QueryBuilder
     {
-        return ($queryBuilder = $this->connectionPool->getQueryBuilderForTable('deployment'))
+        return ($queryBuilder = $this->connectionPool->getQueryBuilderForTable('system'))
             ->select('*')
-            ->from('deployment');
+            ->from('system');
     }
 }
