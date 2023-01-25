@@ -14,10 +14,12 @@ class SystemRepository
 {
     public function __construct(
         private readonly ConnectionPool $connectionPool
-    ) {
+    )
+    {
     }
 
-    public function findById(int $id): array {
+    public function findById(int $id): array
+    {
         return ($queryBuilder = $this->select())
             ->where(
                 $queryBuilder->expr()->eq(
@@ -29,7 +31,8 @@ class SystemRepository
             ->fetch();
     }
 
-    public function findByDeploymentId(int $deploymentId): array {
+    public function findByDeploymentId(int $deploymentId): array
+    {
         return ($queryBuilder = $this->select())
             ->where(
                 $queryBuilder->expr()->eq(
@@ -41,7 +44,8 @@ class SystemRepository
             ->fetchAll();
     }
 
-    public function findByDeploymentIds(array $deploymentIds): array {
+    public function findByDeploymentIds(array $deploymentIds): array
+    {
         return ($queryBuilder = $this->select())
             ->where(
                 $queryBuilder->expr()->in(
@@ -53,14 +57,16 @@ class SystemRepository
             ->fetchAll();
     }
 
-    public function list(): Generator {
+    public function list(): Generator
+    {
         foreach ($this->select()->executeQuery()->fetchAll() as &$record)
         {
             yield System::fromArray($record);
         }
     }
 
-    private function select(): QueryBuilder {
+    private function select(): QueryBuilder
+    {
         return ($queryBuilder = $this->connectionPool->getQueryBuilderForTable('deployment'))
             ->select('*')
             ->from('deployment');

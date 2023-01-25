@@ -18,11 +18,13 @@ class DeploymentRepository
 
     public function __construct(
         private readonly ConnectionPool $connectionPool
-    ) {
+    )
+    {
         $this->addressRepository = new AddressRepository($connectionPool);
     }
 
-    public function findById(int $id): array {
+    public function findById(int $id): array
+    {
         return ($queryBuilder = $this->select())
             ->where(
                 $queryBuilder->expr()->eq(
@@ -34,7 +36,8 @@ class DeploymentRepository
             ->fetch();
     }
 
-    public function findByCustomerId(int $customerId): array {
+    public function findByCustomerId(int $customerId): array
+    {
         return ($queryBuilder = $this->select())
             ->where(
                 $queryBuilder->expr()->eq(
@@ -46,7 +49,8 @@ class DeploymentRepository
             ->fetchAll();
     }
 
-    public function list(): Generator {
+    public function list(): Generator
+    {
         $addressMap = $this->addressRepository->getMap();
 
         foreach ($this->select()->executeQuery()->fetchAll() as &$record)
@@ -59,7 +63,8 @@ class DeploymentRepository
         }
     }
 
-    private function select(): QueryBuilder {
+    private function select(): QueryBuilder
+    {
         return ($queryBuilder = $this->connectionPool->getQueryBuilderForTable('deployment'))
             ->select('*')
             ->from('deployment');
