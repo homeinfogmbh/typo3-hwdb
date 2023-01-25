@@ -18,43 +18,57 @@ class SystemRepository
     {
     }
 
-    public function findById(int $id): array
+    public function findById(int $id): System
     {
-        return ($queryBuilder = $this->select())
-            ->where(
-                $queryBuilder->expr()->eq(
-                    'id',
-                    $queryBuilder->createNamedParameter($id, Connection::PARAM_INT)
+        return System.fromArray(
+            ($queryBuilder = $this->select())
+                ->where(
+                    $queryBuilder->expr()->eq(
+                        'id',
+                        $queryBuilder->createNamedParameter($id, Connection::PARAM_INT)
+                    )
                 )
-            )
-            ->executeQuery()
-            ->fetch();
+                ->executeQuery()
+                ->fetch()
+        );
     }
 
-    public function findByDeploymentId(int $deploymentId): array
+    public function findByDeploymentId(int $deploymentId): Generator
     {
-        return ($queryBuilder = $this->select())
-            ->where(
-                $queryBuilder->expr()->eq(
-                    'deployment',
-                    $queryBuilder->createNamedParameter($deploymentId, Connection::PARAM_INT)
+        foreach (
+            ($queryBuilder = $this->select())
+                ->where(
+                    $queryBuilder->expr()->eq(
+                        'deployment',
+                        $queryBuilder->createNamedParameter($deploymentId, Connection::PARAM_INT)
+                    )
                 )
-            )
-            ->executeQuery()
-            ->fetchAll();
+                ->executeQuery()
+                ->fetchAll()
+            as &$record
+        )
+        {
+            yield System::fromArray($record);
+        }
     }
 
-    public function findByDeploymentIds(array $deploymentIds): array
+    public function findByDeploymentIds(array $deploymentIds): Generator
     {
-        return ($queryBuilder = $this->select())
-            ->where(
-                $queryBuilder->expr()->in(
-                    'deployment',
-                    $queryBuilder->createNamedParameter($deploymentIds, Connection::PARAM_INT_ARRAY)
+        foreach (
+            ($queryBuilder = $this->select())
+                ->where(
+                    $queryBuilder->expr()->in(
+                        'deployment',
+                        $queryBuilder->createNamedParameter($deploymentIds, Connection::PARAM_INT_ARRAY)
+                    )
                 )
-            )
-            ->executeQuery()
-            ->fetchAll();
+                ->executeQuery()
+                ->fetchAll()
+            as &$record
+        )
+        {
+            yield System::fromArray($record);
+        }
     }
 
     public function list(): Generator
