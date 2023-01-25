@@ -19,6 +19,10 @@
                 <source>Standorte</source>
                 <target>Deployments</target>
             </trans-unit>
+            <trans-unit id="backend.systems.label">
+                <source>Systeme</source>
+                <target>Systems</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
