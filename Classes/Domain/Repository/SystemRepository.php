@@ -54,15 +54,9 @@ class SystemRepository
     }
 
     public function list(): Generator {
-        $addressMap = $this->addressRepository->getMap();
-
         foreach ($this->select()->executeQuery()->fetchAll() as &$record)
         {
-            yield Deployment::fromArray(
-                $record,
-                $addressMap[$record['address']],
-                (($lpt_address = $record['lpt_address']) === null) ? null : $addressMap[$lpt_address]
-            );
+            yield System::fromArray($record);
         }
     }
 
