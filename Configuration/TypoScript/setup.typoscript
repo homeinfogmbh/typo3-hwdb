@@ -1,4 +1,4 @@
-module.tx_sysmon2 {
+module.tx_hwdb {
     view {
         templateRootPaths {
             10 = EXT:hwdb/Resources/Private/Templates/
