@@ -68,6 +68,9 @@ final class Deployment
         if (($connection = $array['connection'] ?? NULL) === NULL)
             return NULL;
 
+        if (($address = Address::fromPrefixedFields($array, $addressPrefix)) === NULL)
+            return NULL;
+
         if (($testing = $array['testing'] ?? NULL) === NULL)
             return NULL;
 
@@ -76,7 +79,7 @@ final class Deployment
             $customer,
             $type,
             $connection,
-            Address::fromPrefixedFields($array, $addressPrefix),
+            $address,
             Address::fromPrefixedFields($array, $lptAddressPrefix),
             $array['annotation'],
             $testing,
