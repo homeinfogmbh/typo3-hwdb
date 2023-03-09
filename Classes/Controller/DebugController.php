@@ -18,7 +18,7 @@ class DebugController extends ActionController
         $repository = GeneralUtility::makeInstance(ObjectManager::class)
             ->get(DeploymentRepository::class);
         $deployments = $repository->list();
-        //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($deployments, "Deployments: ");
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($deployments, "Deployments: ");
         $this->view->assign('deployments', $deployments);
     }
 
@@ -28,7 +28,7 @@ class DebugController extends ActionController
         $repository = GeneralUtility::makeInstance(ObjectManager::class)
             ->get(SystemRepository::class);
         $systems = $repository->list();
-        //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($systems, "Systems: ");
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($systems, "Systems: ");
         $this->view->assign('systems', $systems);
     }
 }
