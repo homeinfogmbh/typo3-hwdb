@@ -11,6 +11,7 @@ use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use Homeinfo\mdb\Domain\Repository\AddressRepository;
 
 use Homeinfo\hwdb\Domain\Model\Deployment;
+use Homeinfo\mdb\Domain\Model\Address;
 
 class DeploymentRepository
 {
