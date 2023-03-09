@@ -21,28 +21,10 @@
                     <td>{deployment.customer}</td>
                     <td>{deployment.type}</td>
                     <td>{deployment.connection}</td>
-                    <td>
-                        <table>
-                            <tr>
-                                <td>{deployment.address.street}</td>
-                                <td>{deployment.address.house_number}</td>
-                                <td>{deployment.address.zip_code}</td>
-                                <td>{deployment.address.city}</td>
-                            </tr>
-                        </table>
-                    </td>
+                    <td>{deployment.address}</td>
                     <td>
                         <f:if condition="{deployment.lpt_address}">
-                            <f:then>
-                                <table>
-                                    <tr>
-                                        <td>{deployment.address.street}</td>
-                                        <td>{deployment.address.house_number}</td>
-                                        <td>{deployment.address.zip_code}</td>
-                                        <td>{deployment.address.city}</td>
-                                    </tr>
-                                </table>
-                            </f:then>
+                            <f:then>{deployment.lpt_address}</f:then>
                             <f:else>
                                 -
                             </f:else>
