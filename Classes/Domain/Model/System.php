@@ -29,7 +29,7 @@ final class System
 
     public static function fromArray(array $array, string $deploymentPrefix = 'deployment_', string $datasetPrefix = 'dataset_'): Self
     {
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($array, "System: ");
+        //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($array, "System: ");
         return new self(
             $array['id'],
             $array['group'],
