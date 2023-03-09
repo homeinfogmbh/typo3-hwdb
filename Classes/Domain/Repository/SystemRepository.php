@@ -82,7 +82,47 @@ class SystemRepository
     private function select(): QueryBuilder
     {
         return ($queryBuilder = $this->connectionPool->getQueryBuilderForTable('system'))
-            ->select('*')
-            ->from('system');
+            ->select(
+                'system.*',
+                ...Deployment::aliasedFields('deployment'),
+                ...Deployment::aliasedFields('dataset')
+            )
+            ->from('system')
+            ->leftJoin(
+                'system',
+                'deployment',
+                'deployment',
+                $queryBuilder->expr()->eq('deployment.id', $queryBuilder->quoteIdentifier('system.deployment'))
+            )
+            ->leftJoin(
+                'deployment',
+                'mdb.address',
+                'deployment_address',
+                $queryBuilder->expr()->eq('deployment_address.id', $queryBuilder->quoteIdentifier('deployment.address'))
+            )
+            ->leftJoin(
+                'deployment',
+                'mdb.address',
+                'deployment_lpt_address',
+                $queryBuilder->expr()->eq('deployment_lpt_address.id', $queryBuilder->quoteIdentifier('deployment.lpt_address'))
+            )
+            ->leftJoin(
+                'system',
+                'deployment',
+                'dataset',
+                $queryBuilder->expr()->eq('dataset.id', $queryBuilder->quoteIdentifier('system.dataset'))
+            )
+            ->leftJoin(
+                'dataset',
+                'mdb.address',
+                'dataset_address',
+                $queryBuilder->expr()->eq('dataset_address.id', $queryBuilder->quoteIdentifier('dataset.address'))
+            )
+            ->leftJoin(
+                'dataset',
+                'mdb.address',
+                'dataset_lpt_address',
+                $queryBuilder->expr()->eq('dataset_lpt_address.id', $queryBuilder->quoteIdentifier('dataset.lpt_address'))
+            );
     }
 }

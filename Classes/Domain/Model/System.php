@@ -9,8 +9,8 @@ final class System
     function __construct(
         public readonly int $id,
         public readonly ?int $group,
-        public readonly ?int $deployment,
-        public readonly ?int $dataset,
+        public readonly ?Deployment $deployment,
+        public readonly ?Deployment $dataset,
         public readonly ?int $openvpn,
         public readonly ?string $ipv6address,
         public readonly ?string $pubkey,

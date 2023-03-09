@@ -3,11 +3,28 @@
 namespace Homeinfo\hwdb\Domain\Model;
 
 use DateTime;
+use Generator;
 
 use Homeinfo\mdb\Domain\Model\Address;
 
 final class Deployment
 {
+    static $FIELDS = [
+        'id',
+        'customer',
+        'type',
+        'connection',
+        'address',
+        'lpt_address',
+        'annotation',
+        'testing',
+        'created',
+        // Checklist
+        'construction_site_preparation_feedback',
+        'internet_connection',
+        'technician_annotation'
+    ];
+
     function __construct(
         public readonly int $id,
         public readonly int $customer,
@@ -42,5 +59,11 @@ final class Deployment
             (($internet_connection = $array['internet_connection']) === null) ? null : new DateTime($internet_connection),
             $array['technician_annotation'],
         );
+    }
+
+    public static function aliasedFields(string $alias): Generator
+    {
+        foreach (Self::FIELDS as $field)
+            yield $alias . '.' . $field . ' as ' . $alias . '_' . $field;
     }
 }
