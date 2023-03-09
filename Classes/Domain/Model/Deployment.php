@@ -56,19 +56,19 @@ final class Deployment
 
     public static function fromArray(array $array, string $addressPrefix = 'address_', string $lptAddressPrefix = 'lpt_address_'): ?Self
     {
-        if (($id = $array['id']) === NULL)
+        if (($id = $array['id'] ?? NULL) === NULL)
             return NULL;
         
-        if (($customer = $array['customer']) === NULL)
+        if (($customer = $array['customer'] ?? NULL) === NULL)
             return NULL;
 
-        if (($type = $array['type']) === NULL)
+        if (($type = $array['type'] ?? NULL) === NULL)
             return NULL;
 
-        if (($connection = $array['connection']) === NULL)
+        if (($connection = $array['connection'] ?? NULL) === NULL)
             return NULL;
 
-        if (($testing = $array['testing']) === NULL)
+        if (($testing = $array['testing'] ?? NULL) === NULL)
             return NULL;
 
         return new self(
