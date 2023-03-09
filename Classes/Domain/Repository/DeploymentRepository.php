@@ -70,7 +70,19 @@ class DeploymentRepository
     private function select(): QueryBuilder
     {
         return ($queryBuilder = $this->connectionPool->getQueryBuilderForTable('deployment'))
-            ->select('*')
-            ->from('deployment');
+            ->select('deployment.*', 'address.*', 'lpt_address.*')
+            ->from('deployment')
+            ->leftJoin(
+                'deployment',
+                'address',
+                'address',
+                $queryBuilder->expr()->eq('address.id', $queryBuilder->quoteIdentifier('deployment.address'))
+            )
+            ->leftJoin(
+                'deployment',
+                'address',
+                'lpt_address',
+                $queryBuilder->expr()->eq('lpt_address.id', $queryBuilder->quoteIdentifier('deployment.lpt_address'))
+            );
     }
 }
