@@ -51,7 +51,7 @@ final class Deployment
             if (str_starts_with($key, $prefix))
                 $deploymentFields[substr($key, strlen($prefix))] = $value;
 
-        return Self::fromArray($deploymentFields, $prefix . 'address_', $prefix . 'lpt_address_');
+        return Self::fromArray($deploymentFields);
     }
 
     public static function fromArray(array $array, string $addressPrefix = 'address_', string $lptAddressPrefix = 'lpt_address_'): ?Self
