@@ -54,17 +54,32 @@ final class Deployment
         return Self::fromArray($deploymentFields, $prefix . 'address_', $prefix . 'lpt_address_');
     }
 
-    public static function fromArray(array $array, string $addressPrefix = 'address_', string $lptAddressPrefix = 'lpt_address_'): Self
+    public static function fromArray(array $array, string $addressPrefix = 'address_', string $lptAddressPrefix = 'lpt_address_'): ?Self
     {
+        if (($id = $array['id']) === NULL)
+            return NULL;
+        
+        if (($customer = $array['customer']) === NULL)
+            return NULL;
+
+        if (($type = $array['type']) === NULL)
+            return NULL;
+
+        if (($connection = $array['connection']) === NULL)
+            return NULL;
+
+        if (($testing = $array['testing']) === NULL)
+            return NULL;
+
         return new self(
-            $array['id'],
-            $array['customer'],
-            $array['type'],
-            $array['connection'],
+            $id,
+            $customer,
+            $type,
+            $connection,
             Address::fromPrefixedFields($array, $addressPrefix),
             Address::fromPrefixedFields($array, $lptAddressPrefix),
             $array['annotation'],
-            $array['testing'],
+            $testing,
             (($created = $array['created']) === null) ? null : new DateTime($created),
             (($construction_site_preparation_feedback = $array['construction_site_preparation_feedback']) === null) ? null : new DateTime($construction_site_preparation_feedback),
             (($internet_connection = $array['internet_connection']) === null) ? null : new DateTime($internet_connection),
