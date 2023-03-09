@@ -35,7 +35,7 @@ final class Deployment
         );
     }
 
-    public static function fromArray(array $array, Address $address, ?Address $lpt_address): Self
+    public static function fromArray(array $array, string $addressPrefix = 'address_', string $lptAddressPrefix = 'lpt_address_'): Self
     {
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($array, "Deployment: ");
         return new self(
@@ -43,8 +43,8 @@ final class Deployment
             $array['customer'],
             $array['type'],
             $array['connection'],
-            $address,
-            $lpt_address,
+            Address::fromPrefixedFields($addressPrefix),
+            Address::fromPrefixedFields($lptAddressPrefix),
             $array['annotation'],
             $array['testing'],
             (($created = $array['created']) === null) ? null : new DateTime($created),
