@@ -86,7 +86,11 @@ class SystemRepository
             ->select(
                 'system.*',
                 ...Deployment::aliasedFields('deployment'),
-                ...Deployment::aliasedFields('dataset')
+                ...Address::aliasedFields('deployment_address'),
+                ...Address::aliasedFields('deployment_lpt_address'),
+                ...Deployment::aliasedFields('dataset'),
+                ...Address::aliasedFields('dataset_address'),
+                ...Address::aliasedFields('dataset_lpt_address')
             )
             ->from('system')
             ->leftJoin(
