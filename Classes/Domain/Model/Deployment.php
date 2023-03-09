@@ -42,6 +42,11 @@ final class Deployment
     )
     {
     }
+    
+    public function __toString()
+    {
+        return $this->type . ' of ' . $this->customer . ' @ ' . $this->address;
+    }
 
     public static function fromPrefixedFields(array $array, string $prefix): ?Self
     {
