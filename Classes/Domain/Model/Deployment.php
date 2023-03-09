@@ -28,7 +28,6 @@ final class Deployment
 
     public static function fromArray(array $array, string $addressPrefix = 'address_', string $lptAddressPrefix = 'lpt_address_'): Self
     {
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($array, "Deployment: ");
         return new self(
             $array['id'],
             $array['customer'],
