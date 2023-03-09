@@ -25,7 +25,10 @@ class DeploymentRepository
 
     public function findById(int $id): array
     {
-        return ($queryBuilder = $this->select())
+        $addressMap = $this->addressRepository->getMap();
+
+        return Deployment::fromArrayAndAddressMap(
+            ($queryBuilder = $this->select())
             ->where(
                 $queryBuilder->expr()->eq(
                     'id',
@@ -33,20 +36,27 @@ class DeploymentRepository
                 )
             )
             ->executeQuery()
-            ->fetch();
+            ->fetch(),
+            $addressMap
+        );
     }
 
-    public function findByCustomerId(int $customerId): array
+    public function findByCustomerId(int $customerId): Generator
     {
-        return ($queryBuilder = $this->select())
-            ->where(
-                $queryBuilder->expr()->eq(
-                    'customer',
-                    $queryBuilder->createNamedParameter($customerId, Connection::PARAM_INT)
+        $addressMap = $this->addressRepository->getMap();
+
+        foreach (
+            ($queryBuilder = $this->select())
+                ->where(
+                    $queryBuilder->expr()->eq(
+                        'customer',
+                        $queryBuilder->createNamedParameter($customerId, Connection::PARAM_INT)
+                    )
                 )
+                ->executeQuery()
+                ->fetchAll() as $deployment
             )
-            ->executeQuery()
-            ->fetchAll();
+            yield Deployment::fromArrayAndAddressMap($record, $addressMap);
     }
 
     public function list(): Generator
@@ -54,13 +64,7 @@ class DeploymentRepository
         $addressMap = $this->addressRepository->getMap();
 
         foreach ($this->select()->executeQuery()->fetchAll() as &$record)
-        {
-            yield Deployment::fromArray(
-                $record,
-                $addressMap[$record['address']],
-                (($lpt_address = $record['lpt_address']) === null) ? null : $addressMap[$lpt_address]
-            );
-        }
+            yield Deployment::fromArrayAndAddressMap($record, $addressMap);
     }
 
     private function select(): QueryBuilder

@@ -26,6 +26,15 @@ final class Deployment
     {
     }
 
+    public static function fromArrayAndAddressMap(array $record, array $addressMap): Self
+    {
+        return Self::fromArray(
+            $record,
+            $addressMap[$record['address']],
+            (($lpt_address = $record['lpt_address']) === null) ? null : $addressMap[$lpt_address]
+        );
+    }
+
     public static function fromArray(array $array, Address $address, ?Address $lpt_address): Self
     {
         return new self(
