@@ -26,15 +26,6 @@ final class Deployment
     {
     }
 
-    public static function fromArrayAndAddressMap(array $record, array $addressMap): Self
-    {
-        return Self::fromArray(
-            $record,
-            $addressMap[$record['address']],
-            (($lpt_address = $record['lpt_address']) === null) ? null : $addressMap[$lpt_address]
-        );
-    }
-
     public static function fromArray(array $array, string $addressPrefix = 'address_', string $lptAddressPrefix = 'lpt_address_'): Self
     {
         \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($array, "Deployment: ");

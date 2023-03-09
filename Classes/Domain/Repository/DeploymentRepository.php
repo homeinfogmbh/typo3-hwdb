@@ -26,9 +26,7 @@ class DeploymentRepository
 
     public function findById(int $id): array
     {
-        $addressMap = $this->addressRepository->getMap();
-
-        return Deployment::fromArrayAndAddressMap(
+        return Deployment::fromArray(
             ($queryBuilder = $this->select())
             ->where(
                 $queryBuilder->expr()->eq(
@@ -37,15 +35,12 @@ class DeploymentRepository
                 )
             )
             ->executeQuery()
-            ->fetch(),
-            $addressMap
+            ->fetch()
         );
     }
 
     public function findByCustomerId(int $customerId): Generator
     {
-        $addressMap = $this->addressRepository->getMap();
-
         foreach (
             ($queryBuilder = $this->select())
                 ->where(
@@ -57,15 +52,13 @@ class DeploymentRepository
                 ->executeQuery()
                 ->fetchAll() as $record
             )
-            yield Deployment::fromArrayAndAddressMap($record, $addressMap);
+            yield Deployment::fromArray($record);
     }
 
     public function list(): Generator
     {
-        $addressMap = $this->addressRepository->getMap();
-
         foreach ($this->select()->executeQuery()->fetchAll() as &$record)
-            yield Deployment::fromArrayAndAddressMap($record, $addressMap);
+            yield Deployment::fromArray($record);
     }
 
     private function select(): QueryBuilder
