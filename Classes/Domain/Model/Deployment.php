@@ -43,6 +43,17 @@ final class Deployment
     {
     }
 
+    public static function fromPrefixedFields(array $array, string $prefix): ?Self
+    {
+        $deploymentFields = [];
+
+        foreach ($array as $key => $value)
+            if (str_starts_with($key, $prefix))
+                $deploymentFields[substr($key, strlen($prefix))] = $value;
+
+        return Self::fromArray($deploymentFields, $prefix . 'address_', $prefix . 'lpt_address_');
+    }
+
     public static function fromArray(array $array, string $addressPrefix = 'address_', string $lptAddressPrefix = 'lpt_address_'): Self
     {
         return new self(

@@ -27,13 +27,13 @@ final class System
     {
     }
 
-    public static function fromArray(array $array): Self
+    public static function fromArray(array $array, string $deploymentPrefix = 'deployment_', string $datasetPrefix = 'dataset_'): Self
     {
         return new self(
             $array['id'],
             $array['group'],
-            $array['deployment'],
-            $array['dataset'],
+            Deployment::fromPrefixedFields($array, $deploymentPrefix),
+            Deployment::fromPrefixedFields($array, $datasetPrefix),
             $array['openvpn'],
             inet_ntop($array['ipv6address']),
             $array['pubkey'],
