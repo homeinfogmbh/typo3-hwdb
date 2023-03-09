@@ -54,7 +54,7 @@ class DeploymentRepository
                     )
                 )
                 ->executeQuery()
-                ->fetchAll() as $deployment
+                ->fetchAll() as $record
             )
             yield Deployment::fromArrayAndAddressMap($record, $addressMap);
     }
