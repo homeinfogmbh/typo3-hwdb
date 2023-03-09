@@ -70,7 +70,7 @@ class DeploymentRepository
     private function select(): QueryBuilder
     {
         return ($queryBuilder = $this->connectionPool->getQueryBuilderForTable('deployment'))
-            ->select('deployment.*', 'mdb.address.*', 'mdb.lpt_address.*')
+            ->select('*')
             ->from('deployment')
             ->leftJoin(
                 'deployment',
