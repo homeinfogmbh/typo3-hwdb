@@ -9,7 +9,7 @@ use Homeinfo\mdb\Domain\Model\Address;
 
 final class Deployment
 {
-    static $FIELDS = [
+    private static $FIELDS = [
         'id',
         'customer',
         'type',
