@@ -8,22 +8,11 @@ use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 
-use Homeinfo\mdb\Domain\Repository\AddressRepository;
-
 use Homeinfo\hwdb\Domain\Model\Deployment;
 use Homeinfo\mdb\Domain\Model\Address;
 
 class DeploymentRepository
 {
-    private AddressRepository $addressRepository;
-
-    public function __construct(
-        private readonly ConnectionPool $connectionPool
-    )
-    {
-        $this->addressRepository = new AddressRepository($connectionPool);
-    }
-
     public function findById(int $id): array
     {
         return Deployment::fromArray(
