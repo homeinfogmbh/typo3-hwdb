@@ -13,6 +13,12 @@ use Homeinfo\mdb\Domain\Model\Address;
 
 class DeploymentRepository
 {
+
+    public function __construct(
+        private readonly ConnectionPool $connectionPool
+    )
+    {}
+
     public function findById(int $id): array
     {
         return Deployment::fromArray(
