@@ -51,7 +51,7 @@ class DeploymentRepository
                 )
                 ->executeQuery()
                 ->fetchAll() as $record
-            )
+        )
             yield Deployment::fromArray($record);
     }
 
