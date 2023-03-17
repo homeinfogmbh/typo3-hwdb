@@ -17,8 +17,7 @@ class SystemRepository
     public function __construct(
         private readonly ConnectionPool $connectionPool
     )
-    {
-    }
+    {}
 
     public function findById(int $id): System
     {
@@ -49,9 +48,7 @@ class SystemRepository
                 ->fetchAll()
             as &$record
         )
-        {
             yield System::fromArray($record);
-        }
     }
 
     public function findByDeployments(array $deployments): Generator
@@ -78,17 +75,13 @@ class SystemRepository
                 ->fetchAll()
             as &$record
         )
-        {
             yield System::fromArray($record);
-        }
     }
 
     public function list(): Generator
     {
         foreach ($this->select()->executeQuery()->fetchAll() as &$record)
-        {
             yield System::fromArray($record);
-        }
     }
 
     private function select(): QueryBuilder
