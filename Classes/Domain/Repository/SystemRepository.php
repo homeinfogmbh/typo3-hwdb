@@ -54,6 +54,16 @@ class SystemRepository
         }
     }
 
+    public function findByDeployments(array $deployments): Generator
+    {
+        $deploymentIds = [];
+
+        foreach ($deployments as $deployment)
+            $deploymentIds[] = $deployment->id;
+
+        return $this->findByDeploymentIds($deploymentIds);
+    }
+
     public function findByDeploymentIds(array $deploymentIds): Generator
     {
         foreach (
