@@ -100,4 +100,9 @@ final class Deployment
         foreach (Self::FIELDS as $field)
             yield $alias . '.' . $field . ' as ' . $alias . '_' . $field;
     }
+
+    public function getLPTAddress(): Address
+    {
+        return ($this->lpt_address === NULL) ? $this->address : $this->lpt_address;
+    }
 }
